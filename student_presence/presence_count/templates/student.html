@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>{{student.name}}</title>
+{% endblock %}
+
+{% block body %}
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+            <h1 class="masthead-heading text-uppercase mb-0">{{student.name}}</h1>
+            <!-- Icon Divider-->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Masthead Subheading-->
+            <table class="table table-striped table-hover table-bordered">
+				<thead>
+					<tr>
+                        <th scope="col">Group</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Grade 1</th>
+                        <th scope="col">Grade 2</th>
+                        <th scope="col">Average</th>
+                        <th scope="col">Presences</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td class="text-white">{{student.group}}</td>
+						<td class="text-white">{{student.email}}</td>
+                        <td class="text-white">{{student.grade_1}}</td>
+						<td class="text-white">{{student.grade_2}}</td>
+						<td class="text-white">{{student.grade_avg}}</td>
+						<td class="text-white">{{student.presences}}</td>
+					</tr>
+				</tbody>
+			</table>
+        </div>
+        {% include 'snippets/scripts.html' %}
+    </header>
+{% endblock %}

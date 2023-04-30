@@ -1,0 +1,5 @@
+{% extends 'snippets/register.html' %}
+
+{% block action %}
+    <form action="{% url 'presence_count:register_student' %}" method="POST">
+{% endblock %}
