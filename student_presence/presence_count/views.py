@@ -53,7 +53,7 @@ def roll_call(request):
 
 
 def grades_manager(request):
-    student_list = Student.objects.all().order_by('name')
+    student_list = Student.objects.all().order_by('group_id')
     if request.method == 'POST':
         grade1_list = [float(x) for x in request.POST.getlist('grade1')]
         grade2_list = [float(x) for x in request.POST.getlist('grade2')]

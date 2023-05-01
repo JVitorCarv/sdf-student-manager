@@ -22,8 +22,12 @@
                 <tbody>
                     {% for student in student_list %}
                     <tr>
-                        <td>{{student.name}}</td>
-                        <td>{{student.group}}</td>
+                        <td><a href="{% url 'presence_count:view_student' student.id %}">{{student.name}}</a></td>
+                        {% if student.group_id %}
+                            <td><a href="{% url 'presence_count:view_group' student.group_id %}">{{student.group}}</a></td>
+                        {% else %}
+                            <td>{{student.group}}</td>
+                        {% endif %}
                         <td>
                             <div class="grade1-update">
                                 <input class="form-check-input grade" style='width: 2.5em' input="number" step="0.1"
