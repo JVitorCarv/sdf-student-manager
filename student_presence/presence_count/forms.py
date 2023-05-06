@@ -1,5 +1,5 @@
 from django import forms
-from .models import Group, Student
+from .models import Group, Lesson, Student
 
 
 class RegisterStudentForm(forms.ModelForm):
@@ -12,3 +12,10 @@ class RegisterGroupForm(forms.ModelForm):
     class Meta:
         model = Group
         fields = '__all__'
+
+
+class RegisterLessonForm(forms.ModelForm):
+    class Meta:
+        model = Lesson
+        fields = ('subject', 'description')
+        

@@ -23,3 +23,14 @@ class Student(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class Lesson(models.Model):
+    subject = models.CharField(max_length=100)
+    date = models.DateField(auto_now=True)
+    description = models.TextField(max_length=2048, blank=True)
+    students = models.ManyToManyField('Student', related_name='lesson_presence')
+
+    def __str__(self):
+        return f'{self.date} - {self.subject}'
+    

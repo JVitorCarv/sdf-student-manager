@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
-from presence_count.forms import RegisterGroupForm, RegisterStudentForm
-from .models import Group, Student
+from presence_count.forms import RegisterGroupForm, RegisterLessonForm, RegisterStudentForm
+from .models import Group, Lesson, Student
 from django.db.models import F
 
 
@@ -43,13 +43,26 @@ def register_group(request):
 
 def roll_call(request):
     student_list = Student.objects.all().order_by('group_id')
+    lesson_form = RegisterLessonForm()
     if request.method == 'POST':
+        lesson_data = request.POST.copy()
+        if 'boxes' in lesson_data:
+            del lesson_data['boxes']
+        lesson_form = RegisterLessonForm(lesson_data)
+        if lesson_form.is_valid():
+            created_lesson = lesson_form.save()
+        else:
+            print('Error while saving lesson_form')
+        current_lesson = Lesson.objects.get(pk=created_lesson.id)
+
         id_list = request.POST.getlist('boxes')
         for student_id in id_list:
             Student.objects.filter(pk=int(student_id)).update(presences=F('presences')+1)
+            student = Student.objects.get(pk=int(student_id))
+            current_lesson.students.add(student)
 
         return redirect('presence_count:home')
-    return render(request, 'roll_call.html', {'student_list': student_list})
+    return render(request, 'roll_call.html', {'student_list': student_list, 'lesson_form': lesson_form})
 
 
 def grades_manager(request):
