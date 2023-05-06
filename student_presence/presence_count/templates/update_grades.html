@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-<title>Update Grades</title>
+<title>Grades</title>
 {% endblock %}
 
 {% block body %}
@@ -9,6 +9,7 @@
     <div class="container d-flex flex-column">
         <form action="" method="POST">
             {% csrf_token %}
+            <h1>Grades</h1>
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>

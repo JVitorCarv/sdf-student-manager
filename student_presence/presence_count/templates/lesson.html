@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 
 {% block title %}
-    <title>Roll Call</title>
+    <title>Add Lesson</title>
 {% endblock %} 
 
 {% block body %}
@@ -10,7 +10,7 @@
 	<div class="container d-flex align-items-center flex-column">
 		<form action="" method="POST">
 			{% csrf_token %}
-			<h1>Register a Lesson</h1>
+			<h1>Add Lesson</h1>
 			<table class="table table-striped table-hover table-bordered">
 				{{lesson_form.as_p}}
 				<h2>Roll Call</h2>
@@ -44,7 +44,7 @@
 					{% endfor %}
 				</tbody>
 			</table>
-			<button class="btn btn-secondary" type="submit">Update Presence</button>
+			<button class="btn btn-secondary" type="submit">Add Lesson</button>
 		</form>
 	</div>
 </header>

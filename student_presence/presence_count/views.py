@@ -62,7 +62,7 @@ def roll_call(request):
             current_lesson.students.add(student)
 
         return redirect('presence_count:home')
-    return render(request, 'roll_call.html', {'student_list': student_list, 'lesson_form': lesson_form})
+    return render(request, 'lesson.html', {'student_list': student_list, 'lesson_form': lesson_form})
 
 
 def grades_manager(request):

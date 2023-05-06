@@ -1,5 +1,6 @@
 {% extends 'snippets/register.html' %}
 
 {% block action %}
+    <h1>Add Group</h1>
     <form action="{% url 'presence_count:register_group' %}" method="POST">
 {% endblock %}
