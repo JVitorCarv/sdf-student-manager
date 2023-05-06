@@ -23,7 +23,7 @@ def register(request):
             print('Error while saving student')
         return redirect('presence_count:register_student')
     context = {'form': form}
-    return render(request, 'register_student.html', context)
+    return render(request, 'student/register_student.html', context)
 
 
 
@@ -85,20 +85,40 @@ def grades_manager(request):
             student_list[i].save()
 
         return redirect('presence_count:grades_manager')
-    return render(request, 'update_grades.html', {'student_list': student_list})
+    return render(request, 'student/update_grades.html', {'student_list': student_list})
 
 
 def student(request):
-    return render(request, 'student_links.html')
+    return render(request, 'menus/student_menu.html')
 
 
 def view_student(request, student_id):
     student = Student.objects.get(pk=student_id)
     context = {'student': student}
-    return render(request, 'student.html', context)
+    return render(request, 'student/student.html', context)
+
+
+def edit_student(request, student_id):
+    student = Student.objects.get(pk=student_id)
+    form = RegisterStudentForm(instance=student)
+    context = {'form': form}
+    if request.method == 'POST':
+        form = RegisterStudentForm(request.POST, instance=student)
+        if form.is_valid():
+            form.save()
+        else:
+            print('Error while updating student')
+        return redirect('/')
+    return render(request, 'student/edit_student.html', context)
+
+
+def select_student(request):
+    students = Student.objects.all().order_by('group_id')
+    return render(request, 'student/select_student.html', {'students': students})
 
 
 def view_group(request, group_id):
     group = Group.objects.get(pk=group_id)
-    context = {'group': group}
+    members = Student.objects.filter(group_id=group_id)
+    context = {'group': group, 'members': members}
     return render(request, 'group.html', context)

@@ -32,6 +32,14 @@
 					</tr>
 				</tbody>
 			</table>
+            <h2>MEMBERS</h2>
+            <ul>
+                {% for member in members %}
+                    <li><a style="color: white;" 
+                        href="{% url 'presence_count:view_student' member.id %}" 
+                        target="_blank">{{member.name}}</a></li>
+                {% endfor %}
+            </ul>
         </div>
         {% include 'snippets/scripts.html' %}
     </header>

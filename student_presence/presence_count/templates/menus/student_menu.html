@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-    <title>Presence Count</title>
+    <title>Student</title>
 {% endblock %}
 
 {% block body %}
@@ -17,6 +17,7 @@
             </div>
             <!-- Masthead Subheading-->
             <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:register_student' %}">New student</a></h2>
+            <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:select_student' %}">Edit student</a></h2>
         </div>
         {% include 'snippets/scripts.html' %}
     </header>
