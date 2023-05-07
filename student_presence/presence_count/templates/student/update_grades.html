@@ -13,8 +13,9 @@
             <table class="table table-striped table-hover table-bordered">
                 <thead>
                     <tr>
-                        <th scope="col">Student Name</th>
-                        <th scope="col">Student Group</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Group</th>
+                        <th scope="col">Presences</th>
                         <th scope="col">Grade 1</th>
                         <th scope="col">Grade 2</th>
                         <th scope="col">Average</th>
@@ -23,12 +24,13 @@
                 <tbody>
                     {% for student in student_list %}
                     <tr>
-                        <td><a href="{% url 'presence_count:view_student' student.id %}">{{student.name}}</a></td>
+                        <td><a href="{% url 'presence_count:view_student' student.id %}" target="_blank">{{student.name}}</a></td>
                         {% if student.group_id %}
-                            <td><a href="{% url 'presence_count:view_group' student.group_id %}">{{student.group}}</a></td>
+                            <td><a href="{% url 'presence_count:view_group' student.group_id %}" target="_blank">{{student.group}}</a></td>
                         {% else %}
                             <td>{{student.group}}</td>
                         {% endif %}
+                        <td>{{student.presences}}</td>
                         <td>
                             <div class="grade1-update">
                                 <input class="form-check-input grade" style='width: 2.5em' input="number" step="0.1"
