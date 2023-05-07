@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}
+    <title>Group Options</title>
+{% endblock %}
+
+{% block body %}
+    <!-- Masthead-->
+    <header class="masthead bg-primary text-white text-center">
+        <div class="container d-flex align-items-center flex-column">
+            <!-- Masthead Heading-->
+            <h1 class="masthead-heading text-uppercase mb-0">Group options</h1>
+            <!-- Icon Divider-->
+            <div class="divider-custom divider-light">
+                <div class="divider-custom-line"></div>
+                <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+                <div class="divider-custom-line"></div>
+            </div>
+            <!-- Masthead Subheading-->
+            <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:register_group' %}">New group</a></h2>
+            <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:select_group' 'edit' %}">Edit group</a></h2>
+            <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:select_group' 'delete' %}">Delete group</a></h2>
+        </div>
+        {% include 'snippets/scripts.html' %}
+    </header>
+{% endblock %}

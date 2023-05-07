@@ -136,3 +136,42 @@ def view_group(request, group_id):
     members = Student.objects.filter(group_id=group_id)
     context = {'group': group, 'members': members}
     return render(request, 'group.html', context)
+
+
+def group(request):
+    return render(request, 'menus/group_menu.html')
+
+
+def select_group(request, op):
+    groups = Group.objects.all()
+    context = {'groups': groups, 'op':op}
+    if op == 'edit':
+        return render(request, 'group/select_edit.html', context)
+    elif op == 'delete':
+        return render(request, 'group/select_delete.html', context)
+
+
+def edit_group(request, group_id):
+    group = Group.objects.get(pk=group_id)
+    form = RegisterGroupForm(instance=group)
+    context = {'form': form}
+    if request.method == 'POST':
+        form = RegisterGroupForm(request.POST, instance=group)
+        if form.is_valid():
+            form.save()
+        else:
+            print('Error while editting group')
+        return redirect('/')
+    return render(request, 'group/edit_group.html', context)
+
+
+def confirm_delete_group(request, group_id):
+    group = Group.objects.get(pk=group_id)
+    return render(request, 'group/delete_group.html', {'group': group})
+
+
+def delete_group(request, group_id):
+    group = Group.objects.get(pk=group_id)
+    Student.objects.filter(group_id=group_id).update(group_id=None)        
+    group.delete()
+    return redirect('/')

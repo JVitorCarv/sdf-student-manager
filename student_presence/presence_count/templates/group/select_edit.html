@@ -1,0 +1,9 @@
+{% extends 'group/select_group.html' %}
+
+{% block title %}
+    <title>Edit group</title>
+{% endblock %}
+
+{% block address %}
+    <td><a href="{% url 'presence_count:edit_group' group.id %}">{{group.name}}</a></td>
+{% endblock %}

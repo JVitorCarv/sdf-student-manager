@@ -5,7 +5,7 @@ app_name = 'presence_count'
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('newstudent/', views.register, name='register_student'), 
+    path('student/add/', views.register, name='register_student'), 
     path('lesson/', views.roll_call, name='lesson'),
     path('grades/', views.grades_manager, name='grades_manager'),
     path('newgroup/', views.register_group, name='register_group'),
@@ -15,5 +15,10 @@ urlpatterns = [
     path('student/confirm_delete/<int:student_id>', views.confirm_delete_student, name='confirm_delete_student'),
     path('student/delete/<int:student_id>', views.delete_student, name='delete_student'),
     path('student/select/<str:op>', views.select_student, name='select_student'),
+    path('group/', views.group, name='group'),
+    path('group/select/<str:op>', views.select_group, name='select_group'),
+    path('group/edit/<int:group_id>', views.edit_group, name='edit_group'),
+    path('group/confirm_delete/<int:group_id>', views.confirm_delete_group, name='confirm_delete_group'),
+    path('group/delete/<int:group_id>', views.delete_group, name='delete_group'),
     path('group/<int:group_id>', views.view_group, name='view_group'),
 ]
