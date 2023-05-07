@@ -11,20 +11,22 @@
                     <th scope="col">Name</th>
                     <th scope="col">Email</th>
                     <th scope="col">Group</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
                 {% for student in students %}
                 <tr>
-                    {% block address %}
-
-                    {% endblock %}
+                    <td><a href="{% url 'presence_count:view_student' student.id %}" target="_blank">{{student.name}}</a></td>
                     <td><a href="mailto:{{student.email}}">{{student.email}}</a></td>
                     {% if student.group_id %}
                         <td><a href="{% url 'presence_count:view_group' student.group_id %}" target="_blank">{{student.group}}</a></td>
                     {% else %}
                         <td>{{student.group}}</td>
                     {% endif %}
+                    <td><a class="btn btn-secondary" href="{% url 'presence_count:edit_student' student.id %}">Edit</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'presence_count:confirm_delete_student' student.id %}">Delete</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

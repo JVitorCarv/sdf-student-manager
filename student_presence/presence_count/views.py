@@ -112,13 +112,10 @@ def edit_student(request, student_id):
     return render(request, 'student/edit_student.html', context)
 
 
-def select_student(request, op):
+def select_student(request):
     students = Student.objects.all().order_by('group_id')
-    context = {'students': students, 'op': op}
-    if op == 'edit':
-        return render(request, 'student/select_edit.html', context)
-    elif op == 'delete':
-        return render(request, 'student/select_delete.html', context)
+    context = {'students': students}
+    return render(request, 'student/student_manager.html', context)
     
 
 def confirm_delete_student(request, student_id):

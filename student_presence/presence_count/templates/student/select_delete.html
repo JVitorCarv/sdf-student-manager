@@ -1,9 +1,0 @@
-{% extends 'snippets/select_student.html' %}
-
-{% block title %}
-    <title>Delete student</title>
-{% endblock %}
-
-{% block address %}
-    <td><a href="{% url 'presence_count:confirm_delete_student' student.id %}">{{student.name}}</a></td>
-{% endblock %}

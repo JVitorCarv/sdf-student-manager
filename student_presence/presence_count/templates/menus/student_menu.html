@@ -17,8 +17,7 @@
             </div>
             <!-- Masthead Subheading-->
             <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:register_student' %}">New student</a></h2>
-            <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:select_student' 'edit' %}">Edit student</a></h2>
-            <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:select_student' 'delete' %}">Delete student</a></h2>
+            <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:select_student' %}">Manage students</a></h2>
             <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:grades_manager' %}">Grades</a></h2>
         </div>
         {% include 'snippets/scripts.html' %}
