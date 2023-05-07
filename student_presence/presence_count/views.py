@@ -38,7 +38,7 @@ def register_group(request):
             print('Error while saving group')
         return redirect('presence_count:register_group')
     context = {'form': form}
-    return render(request, 'register_group.html', context)
+    return render(request, 'group/register_group.html', context)
 
 
 def roll_call(request):
@@ -132,20 +132,17 @@ def view_group(request, group_id):
     group = Group.objects.get(pk=group_id)
     members = Student.objects.filter(group_id=group_id)
     context = {'group': group, 'members': members}
-    return render(request, 'group.html', context)
+    return render(request, 'group/group.html', context)
 
 
 def group(request):
     return render(request, 'menus/group_menu.html')
 
 
-def select_group(request, op):
+def select_group(request):
     groups = Group.objects.all()
-    context = {'groups': groups, 'op':op}
-    if op == 'edit':
-        return render(request, 'group/select_edit.html', context)
-    elif op == 'delete':
-        return render(request, 'group/select_delete.html', context)
+    context = {'groups': groups}
+    return render(request, 'group/group_manager.html', context)
 
 
 def edit_group(request, group_id):

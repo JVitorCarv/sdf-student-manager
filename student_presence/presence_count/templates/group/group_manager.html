@@ -12,17 +12,19 @@
                     <th scope="col">Tracking</th>
                     <th scope="col">Repo</th>
                     <th scope="col">Prototype</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Delete</th>
                 </tr>
             </thead>
             <tbody>
                 {% for group in groups %}
                 <tr>
-                    {% block address %}
-
-                    {% endblock %}
+                    <td><a href="{% url 'presence_count:view_group' group.id %}" target="_blank">{{group.name}}</a></td>
                     <td><a href="{{group.tracking}}" target="_blank">{{group.tracking}}</a></td>
                     <td><a href="{{group.repo}}" target="_blank">{{group.repo}}</a></td>
                     <td><a href="{{group.prototype}}" target="_blank">{{group.prototype}}</a></td>
+                    <td><a href="{% url 'presence_count:edit_group' group.id %}" class="btn btn-secondary">Edit</a></td>
+                    <td><a href="{% url 'presence_count:confirm_delete_group' group.id %}" class="btn btn-danger">Delete</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

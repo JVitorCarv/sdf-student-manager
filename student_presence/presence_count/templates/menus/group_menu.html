@@ -17,8 +17,7 @@
             </div>
             <!-- Masthead Subheading-->
             <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:register_group' %}">New group</a></h2>
-            <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:select_group' 'edit' %}">Edit group</a></h2>
-            <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:select_group' 'delete' %}">Delete group</a></h2>
+            <h2><a style='color:aliceblue; text-decoration: none;' href="{% url 'presence_count:select_group' %}">Manage groups</a></h2>
         </div>
         {% include 'snippets/scripts.html' %}
     </header>

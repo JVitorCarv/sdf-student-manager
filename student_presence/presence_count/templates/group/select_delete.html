@@ -1,9 +1,0 @@
-{% extends 'group/select_group.html' %}
-
-{% block title %}
-    <title>Delete group</title>
-{% endblock %}
-
-{% block address %}
-    <td><a href="{% url 'presence_count:confirm_delete_group' group.id %}">{{group.name}}</a></td>
-{% endblock %}
