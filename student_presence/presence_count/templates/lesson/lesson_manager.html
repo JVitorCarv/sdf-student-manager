@@ -18,11 +18,11 @@
             <tbody>
                 {% for lesson in lessons %}
                 <tr>
-                    <td><a href="">{{lesson.subject}}</a></td>
+                    <td>{{lesson.subject}}</td>
                     <td>{{lesson.date}}</td>
                     <td>{{lesson.description}}</td>
-                    <td><a href="{% url 'presence_count:edit_lesson' lesson.id %}">Edit</a></td>
-                    <td><a href="{% url 'presence_count:edit_lesson' lesson.id %}">Delete</a></td>
+                    <td><a class="btn btn-secondary" href="{% url 'presence_count:edit_lesson' lesson.id %}">Edit</a></td>
+                    <td><a class="btn btn-danger" href="{% url 'presence_count:confirm_delete_lesson' lesson.id %}">Delete</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

@@ -62,7 +62,7 @@ def roll_call(request):
             current_lesson.students.add(student)
 
         return redirect('presence_count:home')
-    return render(request, 'lesson.html', {'student_list': student_list, 'lesson_form': lesson_form})
+    return render(request, 'lesson/lesson.html', {'student_list': student_list, 'lesson_form': lesson_form})
 
 
 def grades_manager(request):
@@ -216,4 +216,26 @@ def edit_lesson(request, lesson_id):
                 lesson.students.add(student)
         return redirect('/')
     context = {'lesson_form': lesson_form, 'student_list':student_list, 'present_students':present_students}
-    return render(request, 'lesson.html', context)
+    return render(request, 'lesson/lesson.html', context)
+
+
+def confirm_delete_lesson(request, lesson_id):
+    lesson = Lesson.objects.get(pk=lesson_id)
+    lesson_students = Lesson.students.through.objects.filter(lesson_id=lesson.id)
+    present_students = []
+    for ls in lesson_students:
+        present_students.append(ls.student_id)
+    students = Student.objects.all()
+    context = {'lesson': lesson, 'present_students': present_students, 'students': students}
+    return render(request, 'lesson/delete_lesson.html', context)    
+
+
+def delete_lesson(request, lesson_id):
+    lesson_students = Lesson.students.through.objects.filter(lesson_id=lesson_id)
+    for ls in lesson_students:
+        Student.objects.filter(pk=int(ls.student_id)).update(presences=F('presences')-1)
+        ls.delete()
+    lesson = Lesson.objects.get(pk=lesson_id)
+    lesson.delete()
+    return redirect('/')
+    
