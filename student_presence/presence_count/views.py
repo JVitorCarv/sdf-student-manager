@@ -62,7 +62,7 @@ def roll_call(request):
             current_lesson.students.add(student)
 
         return redirect('presence_count:home')
-    return render(request, 'lesson/lesson.html', {'student_list': student_list, 'lesson_form': lesson_form})
+    return render(request, 'lesson/add_lesson.html', {'student_list': student_list, 'lesson_form': lesson_form})
 
 
 def grades_manager(request):
@@ -216,7 +216,7 @@ def edit_lesson(request, lesson_id):
                 lesson.students.add(student)
         return redirect('/')
     context = {'lesson_form': lesson_form, 'student_list':student_list, 'present_students':present_students}
-    return render(request, 'lesson/lesson.html', context)
+    return render(request, 'lesson/edit_lesson.html', context)
 
 
 def confirm_delete_lesson(request, lesson_id):
