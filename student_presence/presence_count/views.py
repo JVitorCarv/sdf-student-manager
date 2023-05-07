@@ -175,3 +175,45 @@ def delete_group(request, group_id):
     Student.objects.filter(group_id=group_id).update(group_id=None)        
     group.delete()
     return redirect('/')
+
+
+def lesson_manager(request):
+    lessons = Lesson.objects.all()
+    context = {'lessons': lessons}
+    return render(request, 'lesson/lesson_manager.html', context)
+
+
+def edit_lesson(request, lesson_id):
+    lesson = Lesson.objects.get(pk=lesson_id)
+    lesson_form = RegisterLessonForm(instance=lesson)
+    student_list = Student.objects.all().order_by('group_id')
+    lesson_students = Lesson.students.through.objects.filter(lesson_id=lesson.id)
+    present_students = []
+    for ls in lesson_students:
+        present_students.append(ls.student_id)
+
+    if request.method == 'POST':
+        lesson_data = request.POST.copy()
+        if 'boxes' in lesson_data:
+            del lesson_data['boxes']
+        lesson_form = RegisterLessonForm(lesson_data, instance=lesson) # Change this!
+        if lesson_form.is_valid():
+            lesson_form.save()
+        else:
+            print('Error while updating lesson')
+        
+        for student_id in present_students:
+            if str(student_id) not in request.POST.getlist('boxes'):
+                print(f'Removing presence from {Student.objects.get(pk=int(student_id))}')
+                presence = Lesson.students.through.objects.get(lesson_id=lesson.id, student_id=student_id)
+                presence.delete()
+                Student.objects.filter(pk=int(student_id)).update(presences=F('presences')-1)
+        for student_id in request.POST.getlist('boxes'):
+            if not int(student_id) in present_students:
+                print(f'Adding presence to {Student.objects.get(pk=int(student_id))}')
+                Student.objects.filter(pk=int(student_id)).update(presences=F('presences')+1)
+                student = Student.objects.get(pk=int(student_id))
+                lesson.students.add(student)
+        return redirect('/')
+    context = {'lesson_form': lesson_form, 'student_list':student_list, 'present_students':present_students}
+    return render(request, 'lesson.html', context)

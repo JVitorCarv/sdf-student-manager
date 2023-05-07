@@ -17,5 +17,8 @@ class RegisterGroupForm(forms.ModelForm):
 class RegisterLessonForm(forms.ModelForm):
     class Meta:
         model = Lesson
-        fields = ('subject', 'description')
+        fields = ('subject', 'date', 'description')
+        widgets = {
+            'date': forms.SelectDateWidget()
+        }
         

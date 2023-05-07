@@ -32,12 +32,22 @@
 						{% endif %}
 						<td>
 							<div class="present-check">
-								<input
-									class="form-check-input"
-									type="checkbox"
-									value="{{student.id}}"
-									name="boxes"
-								/>
+								{% if student.id in present_students %}
+									<input
+										class="form-check-input"
+										type="checkbox"
+										value="{{student.id}}"
+										name="boxes"
+										checked
+									/>
+								{% else %}
+									<input
+										class="form-check-input"
+										type="checkbox"
+										value="{{student.id}}"
+										name="boxes"
+									/>
+								{% endif %}
 							</div>
 						</td>
 					</tr>

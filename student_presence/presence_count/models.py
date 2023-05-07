@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import date
 
 # Create your models here.
 class Group(models.Model):
@@ -27,7 +28,7 @@ class Student(models.Model):
 
 class Lesson(models.Model):
     subject = models.CharField(max_length=100)
-    date = models.DateField(auto_now=True)
+    date = models.DateField(default=date.today)
     description = models.TextField(max_length=2048, blank=True)
     students = models.ManyToManyField('Student', related_name='lesson_presence')
 
