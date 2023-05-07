@@ -12,6 +12,8 @@ urlpatterns = [
     path('student/', views.student, name='student'),
     path('student/<int:student_id>', views.view_student, name='view_student'),
     path('student/edit/<int:student_id>', views.edit_student, name='edit_student'),
-    path('student/select/', views.select_student, name='select_student'),
+    path('student/confirm_delete/<int:student_id>', views.confirm_delete_student, name='confirm_delete_student'),
+    path('student/delete/<int:student_id>', views.delete_student, name='delete_student'),
+    path('student/select/<str:op>', views.select_student, name='select_student'),
     path('group/<int:group_id>', views.view_group, name='view_group'),
 ]

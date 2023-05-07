@@ -112,10 +112,24 @@ def edit_student(request, student_id):
     return render(request, 'student/edit_student.html', context)
 
 
-def select_student(request):
+def select_student(request, op):
     students = Student.objects.all().order_by('group_id')
-    return render(request, 'student/select_student.html', {'students': students})
+    context = {'students': students, 'op': op}
+    if op == 'edit':
+        return render(request, 'student/select_edit.html', context)
+    elif op == 'delete':
+        return render(request, 'student/select_delete.html', context)
+    
 
+def confirm_delete_student(request, student_id):
+    student = Student.objects.get(pk=student_id)
+    return render(request, 'student/delete_student.html', {'student': student})    
+
+
+def delete_student(request, student_id):
+    student = Student.objects.get(pk=student_id)
+    student.delete()
+    return redirect('/')
 
 def view_group(request, group_id):
     group = Group.objects.get(pk=group_id)
