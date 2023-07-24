@@ -33,7 +33,10 @@ jobs:
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
       - name: Collect static files
-        run: python manage.py collectstatic
+        run: |
+          cd student_presence/
+          python manage.py collectstatic
+          cd ..
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
