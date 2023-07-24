@@ -32,6 +32,14 @@ jobs:
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
+            
+      - name: Cleaning testing files
+        run: |
+          cd student_presence/
+          rm db.sqlite3
+          rm .env
+          cd ..
+
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
