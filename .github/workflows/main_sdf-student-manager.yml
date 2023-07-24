@@ -28,16 +28,22 @@ jobs:
           source venv/bin/activate
       
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r student_presence/requirements.txt
         
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
       
+#      - name: Collect static files
+#        run: |
+#          cd student_presence/
+#          python manage.py collectstatic
+#          cd ..
+
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v2
         with:
           name: python-app
           path: |
-            . 
+            student_presence 
             !venv/
 
   deploy:
