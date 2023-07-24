@@ -1,4 +1,6 @@
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 
 app_name = 'presence_count'
@@ -25,4 +27,4 @@ urlpatterns = [
     path('group/confirm_delete/<int:group_id>', views.confirm_delete_group, name='confirm_delete_group'),
     path('group/delete/<int:group_id>', views.delete_group, name='delete_group'),
     path('group/<int:group_id>', views.view_group, name='view_group'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
