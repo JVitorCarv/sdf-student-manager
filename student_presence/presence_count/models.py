@@ -3,6 +3,7 @@ from datetime import date
 
 # Create your models here.
 class Group(models.Model):
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=100)
     tracking = models.URLField(blank=True)
     repo = models.URLField(blank=True)
@@ -14,6 +15,7 @@ class Group(models.Model):
 
 
 class Student(models.Model):
+    id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=100)
     email = models.EmailField(max_length=100)
     grade_1 = models.FloatField(default=0)
@@ -27,6 +29,7 @@ class Student(models.Model):
     
 
 class Lesson(models.Model):
+    id = models.BigAutoField(primary_key=True)
     subject = models.CharField(max_length=100)
     date = models.DateField(default=date.today)
     description = models.TextField(max_length=2048, blank=True)
