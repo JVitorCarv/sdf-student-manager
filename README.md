@@ -1,6 +1,8 @@
 # SDF Student Manager
 I developed this web application to simplify student grading and presence management for a "Software Development Fundamentals" course. It was later also used as an example webpp for the course.
 
+![image](https://github.com/user-attachments/assets/d12ea394-8152-4000-99b4-dde9dd076b18)
+
 ## Features
 This application provides comprehensive functionalities for managing students, groups, and lessons, including:
 
