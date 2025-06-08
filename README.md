@@ -4,7 +4,7 @@ I developed this web application to simplify student grading and presence manage
 ## Features
 This application provides comprehensive functionalities for managing students, groups, and lessons, including:
 
-- Student Management:
+**- Student Management**:
 
   - Register new students.
 
@@ -16,7 +16,7 @@ This application provides comprehensive functionalities for managing students, g
 
   - Manage student grades.
 
-- Group Management:
+**- Group Management**:
 
   - Register new groups.
 
@@ -26,7 +26,7 @@ This application provides comprehensive functionalities for managing students, g
 
   - Delete groups.
 
-- Lesson Management:
+**- Lesson Management**:
 
   - Add new lessons with roll call functionality.
 
@@ -39,52 +39,59 @@ This application provides comprehensive functionalities for managing students, g
 # Technologies Used
 The project is built using the following technologies:
 
-- Django: A high-level Python Web framework.
+**- Django**: A high-level Python Web framework.
 
-- Python: The primary programming language (version 3.11 specified).
+**- Python**: The primary programming language (version 3.11 specified).
 
-- Bootstrap: Used for styling the web application.
+**- Bootstrap**: Used for styling the web application.
 
-- jQuery: A JavaScript library for DOM manipulation and event handling.
+**- jQuery**: A JavaScript library for DOM manipulation and event handling.
 
-- SQLite: Database used for local development.
+**- SQLite**: Database used for local development.
 
-- PostgreSQL: Database used for production environments.
+**- PostgreSQL**: Database used for production environments.
 
-- Gunicorn: A Python WSGI HTTP Server for UNIX.
+**- Gunicorn**: A Python WSGI HTTP Server for UNIX.
 
-- Whitenoise: For serving static files in production.
+**- Whitenoise**: For serving static files in production.
 
-- python-dotenv: For managing environment variables.
+**- python-dotenv**: For managing environment variables.
+
+**- uv**: A fast Python package installer and resolver.
 
 ## Setup and Installation
 To set up the project locally, follow these steps:
 
-1. Clone the repository:
+**1. Ensure Python 3.13 and uv are installed on your system**.
 
+**2. Clone the repository**:
+  ```bash
+  git clone https://github.com/jvitorcarv/sdf-student-manager.git
+  cd sdf-student-manager/student_presence
+  ```
+
+**3. Create and activate a virtual environmente using `uv`**:
+  ```bash
+  uv venv
+  source .venv/bin/activate  # On macOS/Linux
+  # or
+  .venv\Scripts\activate # On Windows
+  ```
+
+**4. Install dependencies**:
+  ```bash
+  uv init
+  uv sync
+  ```
+
+**5. Apply database migrations**:
 ```bash
-git clone https://github.com/jvitorcarv/sdf-student-manager.git
-cd sdf-student-manager/student_presence
+python manage.py makemigrations presence_count
+python manage.py migrate
 ```
 
-2. Set up a virtual environment:
-  ```bash
-  python -m venv venv
-  source venv/bin/activate
-  ```
 
-3. Install dependencies:
-  ```bash
-  pip install -r requirements.txt
-  ```
-
-4. Database Migrations:
-  ```bash
-  python manage.py makemigrations presence_count
-  python manage.py migrate
-  ```
-
-5. Create a Superuser (optional, for admin access):
+**6. Create a Superuser (optional, for admin access)**:
 ```bash
 python manage.py createsuperuser
 ```
@@ -127,7 +134,8 @@ sdf-student-manager/
     │   ├── tests.py                    (Application tests)
     │   ├── urls.py                     (URL routing for the app)
     │   └── views.py                    (View functions)
-    ├── requirements.txt                (Python dependencies)
+    ├── pyproject.toml                  (Python dependencies)
+    ├── uv.lock                         (Python dependencies)
     └── student_presence/               (Main Django project settings)
         ├── asgi.py
         ├── settings.py                 (Project settings)
